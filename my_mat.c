@@ -40,9 +40,13 @@ int min(int a, int b)
 }
 
 /**
- * @brief 
+ * @brief apllies the Floyd-Warshall algorithm on matrix with size of (LENxLEN) = (10x10)
+ * for no connection between 2 vertexes we will still remains on 0, but we will consider it as 'inf'
+ * if not has the same row,col number
+ * the function works like that:
+ * A(i,j)_{k} = min { A(i,j)_{k-1} ,  A(i,k)_{k-1} + A(k,j)_{k-1} }
  * 
- * @param arr 
+ * @param arr matrix with size of (LENxLEN) = (10x10)
  */
 void FloydWarshallAlgo(int arr[][LEN])
 {
@@ -53,16 +57,16 @@ void FloydWarshallAlgo(int arr[][LEN])
 			for (int j = 0; j < LEN; j++)
 			{
 				if (!(arr[i][k] == 0 && i != k) && !(arr[k][j] == 0 && k != j)) 
-					// if not inf i,k and if not inf k,j
+					// if arr[i][k] is not 'inf'  AND  arr[k][j] if not 'inf'
 				{
-					if (arr[i][j] == 0 && i != j)	// if arr[i][j] is inf
+					if (arr[i][j] == 0 && i != j)	// if arr[i][j] is 'inf'
 					{
-						arr[i][j] = arr[i][k] + arr[k][j];
-						//A[i][j] = min(A[i][j], A[i][k] + A[k][j])
+						arr[i][j] = arr[i][k] + arr[k][j];	// this is the minimal value
 					}
 					else
 					{
 						arr[i][j] = min(arr[i][j], arr[i][k] + arr[k][j]);
+						//according to FW algorithm gets the minimum between the two
 					}
 					
 				}
