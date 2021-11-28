@@ -24,14 +24,26 @@ void initMat(int arr[][LEN])
 			}
 		}
 	}
-	FloydWarshallAlgo(arr);
+	FloydWarshallAlgo(arr);		// run the floyd warshall algorithm
 }
 
+/**
+ * @brief get the minimum out of 2 integers
+ * 
+ * @param a first integer
+ * @param b second integer
+ * @return int the smallest integer out of the two
+ */
 int min(int a, int b)
 {
 	return (a < b ? a : b);
 }
 
+/**
+ * @brief 
+ * 
+ * @param arr 
+ */
 void FloydWarshallAlgo(int arr[][LEN])
 {
 	for (int k = 0; k < LEN; k++)
@@ -40,10 +52,10 @@ void FloydWarshallAlgo(int arr[][LEN])
 		{
 			for (int j = 0; j < LEN; j++)
 			{
-				if (!((arr[i][k] == 0 && i != k) || (arr[k][j] == 0 && k != j))) 
+				if (!(arr[i][k] == 0 && i != k) && !(arr[k][j] == 0 && k != j)) 
 					// if not inf i,k and if not inf k,j
 				{
-					if (arr[i][j] == 0 && i != j)	// if arr[i][j] is not inf
+					if (arr[i][j] == 0 && i != j)	// if arr[i][j] is inf
 					{
 						arr[i][j] = arr[i][k] + arr[k][j];
 						//A[i][j] = min(A[i][j], A[i][k] + A[k][j])
