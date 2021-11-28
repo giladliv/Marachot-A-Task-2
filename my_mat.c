@@ -40,9 +40,9 @@ int min(int a, int b)
 }
 
 /**
- * @brief apllies the Floyd-Warshall algorithm on matrix with size of (LENxLEN) = (10x10)
- * for no connection between 2 vertexes we will still remains on 0, but we will consider it as 'inf'
- * if not has the same row,col number
+ * @brief apllies the Floyd-Warshall algorithm on matrix with size of (LENxLEN) = (10x10). 
+ * For no connection between 2 vertexs we will still remains on 0, but we will consider it as 'inf'
+ * if not has the same row,col number.
  * the function works like that:
  * A(i,j)_{k} = min { A(i,j)_{k-1} ,  A(i,k)_{k-1} + A(k,j)_{k-1} }
  * 
@@ -77,23 +77,36 @@ void FloydWarshallAlgo(int arr[][LEN])
 }
 
 
-
+/**
+ * @brief Gets 2 indexs from the user,
+ * Prints "True" if there is a path through 2 points,
+ * "False" if there is no path
+ * 
+ * @param arr matrix with size of (LENxLEN) = (10x10)
+ */
 void hasRoute(int arr[][LEN])
 {
 	int i = 0, j = 0;
-	if (!(scanf(" %d %d", &i, &j) == EOF) && 
-		0 <= i && i < LEN && 0 <= j && j < LEN)
+	if (!(scanf("%d%d", &i, &j) == EOF) && 			// gets the indexs and check if not end of file
+		0 <= i && i < LEN && 0 <= j && j < LEN)		// checks if indexs are in boundries of the matrix
 	{
 		printf("%s\n", (arr[i][j] ? "True" : "False"));
 	}
 	
 }
 
+/**
+ * @brief Gets 2 indexs from the user,
+ * Prints the path length if there is a path through 2 points,
+ * (-1) if there is no path
+ * 
+ * @param arr matrix with size of (LENxLEN) = (10x10)
+ */
 void shortPath(int arr[][LEN])
 {
 	int i = 0, j = 0;
-	if (!(scanf(" %d %d", &i, &j) == EOF) && 
-		0 <= i && i < LEN && 0 <= j && j < LEN)
+	if (!(scanf("%d%d", &i, &j) == EOF) && 		// gets the indexs and check if not end of file
+		0 <= i && i < LEN && 0 <= j && j < LEN)	// checks if indexs are in boundries of the matrix
 	{
 		printf("%d\n", (arr[i][j] ? arr[i][j] : -1));
 	}
