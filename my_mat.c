@@ -1,13 +1,27 @@
 #include "my_mat.h"
 
+
+/**
+ * @brief init and set a matrix by the input after that performs the Floyd-Warshall Algorithm
+ * on the matrix
+ * 
+ * @param arr - 2d array with size of LENxLEN that all the index is in the 
+ */
 void initMat(int arr[][LEN])
 {
 	int isEOF = FALSE;
-	for (int i = 0; !isEOF && i < LEN; i++)
+	for (int i = 0; i < LEN; i++)
 	{
-		for (int j = 0; !isEOF && j < LEN; j++)
+		for (int j = 0; j < LEN; j++)
 		{
-			isEOF = (scanf("%d", &arr[i][j]) == EOF);
+			if (isEOF)			// if end of file set the cell to be 0
+			{
+				arr[i][j] = 0;
+			}
+			else				// if not end of file get the cell's value by the user
+			{
+				isEOF = (scanf("%d", &arr[i][j]) == EOF);
+			}
 		}
 	}
 	FloydWarshallAlgo(arr);
